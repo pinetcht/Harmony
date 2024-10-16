@@ -3,9 +3,9 @@ Description: A Spotify extension that allows users to message each other and pos
 Authors: Tiffany Fu, Pine Netcharussaeng, Abhinav Attaluri, Anna Batman , Anh Nguyen
 
 ## Table of Contents
-1. Installation
-2. Features
-3. Tutorial
+1. [Installation](#installation)
+2. [Features](#features)
+3. [Tutorial](#tutorial)
 
 ### Installation
 To run our app follow these steps
