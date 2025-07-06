@@ -8,7 +8,7 @@ var cookieParser = require("cookie-parser");
 require("dotenv").config();
 var client_id = process.env.CLIENT_ID; // your clientId
 var client_secret = process.env.CLIENT_SECRET; // Your secret
-var redirect_uri = "http://localhost:8000/callback"; // Your redirect uri -> port = 8000
+var redirect_uri = "http://127.0.0.1:8000/callback"; // Your redirect uri -> port = 8000
 
 const db = require("./firebase");
 const {
@@ -40,6 +40,8 @@ app.get("/login", function (req, res) {
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
+
+
   // your application requests authorization
   var scope =
     "user-read-private user-read-email user-top-read user-follow-read user-library-read";
@@ -67,6 +69,7 @@ app.get("/callback", function (req, res) {
   var storedState = req.cookies ? req.cookies[stateKey] : null;
 
   if (state === null || state !== storedState) {
+
     res.redirect(
       "/#" +
         querystring.stringify({
@@ -561,6 +564,7 @@ app.use("/chat", chatRouter);
 app.use("/users", userRouter);
 app.use("/messages", messagesRouter);
 app.use("/forum", forumsRouter);
+app.use(cookieParser());
 /* ---------------------------------------------------------------------------------------- */
 
 console.log("Listening on 8000");
