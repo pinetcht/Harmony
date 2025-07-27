@@ -147,7 +147,7 @@ const Library = () => {
             <div className="page-container">
                 <h1>Your library</h1>
                 <div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
+                    <div style={{ display: "flex", alignItems: "center", height:"70px"}}>
                         <SearchBar
                             placeholder={placeholder} //{"Search your " + activeTab + "..."}
                             input={input}

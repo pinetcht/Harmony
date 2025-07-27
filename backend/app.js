@@ -40,21 +40,21 @@ app.get("/login", function (req, res) {
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-
+  console.log("Set state cookie to: ", state);
 
   // your application requests authorization
   var scope =
     "user-read-private user-read-email user-top-read user-follow-read user-library-read";
   res.redirect(
     "https://accounts.spotify.com/authorize?" +
-      querystring.stringify({
-        response_type: "code",
-        client_id: client_id,
-        scope: scope,
-        redirect_uri: redirect_uri,
-        state: state,
-        show_dialog: true, // to make sure you always go to spotify log-in everytime log in button is clicked
-      })
+    querystring.stringify({
+      response_type: "code",
+      client_id: client_id,
+      scope: scope,
+      redirect_uri: redirect_uri,
+      state: state,
+      show_dialog: true, // to make sure you always go to spotify log-in everytime log in button is clicked
+    })
   );
 });
 
@@ -72,9 +72,9 @@ app.get("/callback", function (req, res) {
 
     res.redirect(
       "/#" +
-        querystring.stringify({
-          error: "state_mismatch",
-        })
+      querystring.stringify({
+        error: "state_mismatch",
+      })
     );
   } else {
     res.clearCookie(stateKey);
@@ -116,12 +116,12 @@ app.get("/callback", function (req, res) {
           // we can also pass the token to the browser to make requests from there
           res.redirect(
             "http://localhost:5173/#" +
-              querystring.stringify({
-                access_token: access_token,
-                refresh_token: refresh_token,
-                user_id: user_id,
-                user_name: user_name,
-              })
+            querystring.stringify({
+              access_token: access_token,
+              refresh_token: refresh_token,
+              user_id: user_id,
+              user_name: user_name,
+            })
           );
 
           // add user info to firebase
@@ -130,7 +130,7 @@ app.get("/callback", function (req, res) {
             const q = query(usersRef, where("userid", "==", user_id));
             const querySnapshot = await getDocs(q);
 
-            if(querySnapshot.empty){
+            if (querySnapshot.empty) {
               await addDoc(collection(db, "users"), {
                 public: true,
                 username: body.display_name,
@@ -138,7 +138,15 @@ app.get("/callback", function (req, res) {
                 followercount: body.followers.total,
                 userid: body.id,
               });
-            }            
+            } else {
+              // Update the first matching document
+              const docRef = querySnapshot.docs[0].ref;
+              await updateDoc(docRef, {
+                username: body.display_name,
+                profilepic: body.images[1] ? body.images[1].url : null,
+                followercount: body.followers.total,
+              });
+            }
           } catch (e) {
             console.error("Error adding user: ", e);
           }
@@ -514,9 +522,9 @@ app.get("/callback", function (req, res) {
       } else {
         res.redirect(
           "http://localhost:5173/#" +
-            querystring.stringify({
-              error: "invalid_token",
-            })
+          querystring.stringify({
+            error: "invalid_token",
+          })
         );
       }
     });

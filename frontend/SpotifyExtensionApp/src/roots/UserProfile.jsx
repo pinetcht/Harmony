@@ -119,7 +119,7 @@ const UserProfile = ({ userId }) => {
             <h4 className="content-header"> Saved Albums </h4>
             <div className="content-container"> 
             {savedAlbums && savedAlbums.map((album) => (
-            <div className="albums"> 
+            <div className="albums" key={album.albumid}> 
               <img src={album.albumimage} alt="Album cover" className="artist-image"></img>
               <div className="album-name"> 
                 {album.albumname}

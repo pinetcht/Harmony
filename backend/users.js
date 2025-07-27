@@ -37,9 +37,11 @@ router.get("/:id", async (req, res) => {
   try {
 
     const docRef = doc(db, "users", req.params.id);
+    console.log('req.params.id ', req.params.id)
+
     const docSnap = await getDoc(docRef);
-   
-    
+    console.log('docsnap in get id ', docSnap)
+
     if (docSnap.exists()) {
       res.status(200).json(docSnap.data());
     } else {
@@ -54,10 +56,8 @@ router.get("/:id", async (req, res) => {
 router.put("/query/:query", async (req, res) => {
   try {
     const userId = req.body.userId;
-    console.log(userId);
     const q = query(collection(db,"users"), where("userid", "==", userId));
     const querySnapshot = await getDocs(q);
-    console.log(querySnapshot.docs[0].id);
     if (querySnapshot) {
       res.status(200).json(querySnapshot.docs[0].id);
     } else {

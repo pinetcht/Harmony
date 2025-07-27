@@ -8,7 +8,7 @@ const ForumCard = ({data, handleForumCardClick}) => {
       <img className="card-album-cover" src={data.albumcover} />
       <div className="post-info">
         <h2 className="album-name" style={{fontSize: "23px", marginBottom: "-50px"}}> {data.albumname} </h2>
-        <h3 style={{fontWeight: "normal", fontSize: "20px", margin:"0px"}}>Album By: {data.artistmessage.name}</h3>
+        <h3 style={{fontWeight: "normal", fontSize: "20px", margin:"4% 0px 0px 0px", paddingLeft:"0px"}}>Album By: {data.artistmessage.name}</h3>
       </div>
       <div className="right-side"> 
         <div className="quick-info">

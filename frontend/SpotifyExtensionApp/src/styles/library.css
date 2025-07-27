@@ -84,19 +84,20 @@ img {
 
 .select {
     border-radius: 10px;
-    width: 215px;
-    height: 25px;
-    padding-right: 20px;
+    width: 15%;
+    padding: 0.5%;
     margin-top: 20px;
-    font-size: 15px;
+    font-size: 1.5rem;
     border: none;
+
 }
 
 .librarybutton {
     border-radius: 10px;
-    width: 60px;
-    height: 30px;
+    width: 10%;
+    height: 60%;
     background-color: #f9bc60;
     border: none;
     align-items: center;
+    font-size: 1.5rem;
 }
