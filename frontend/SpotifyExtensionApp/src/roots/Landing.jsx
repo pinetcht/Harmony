@@ -11,7 +11,7 @@ const Landing = () => {
 
   useEffect(() => {
     if (accessToken) {
-      navigate('/Discover');
+      navigate('/');
     }
   }, [accessToken, navigate])
 

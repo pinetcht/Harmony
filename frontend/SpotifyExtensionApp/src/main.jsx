@@ -21,8 +21,7 @@ const RootApp = () => {
 	return (
 		<AuthProvider location={location} navigate={navigate}>
 			<Routes>
-				<Route path="/" element={<Landing />} />
-				<Route path="/Discover" element={<Discover />} />
+				<Route path="/" element={<Discover />} />
 				<Route path="/Inbox" element={<Inbox />} />
 				<Route path="/Forum" element={<Forum />} />
 				<Route path="/Library" element={<Library />} />

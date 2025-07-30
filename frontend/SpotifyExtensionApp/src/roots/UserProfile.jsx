@@ -53,7 +53,7 @@ const UserProfile = ({ userId }) => {
 
   return (
     <>
-      <a href="/Discover" className="back-button-link"> 
+      <a href="/" className="back-button-link"> 
         <button className="profile-button" style={{width:"60px", height:"30px"}}> 
           <img src="/backarrow.png" alt="Back"></img>
         </button> 

@@ -133,6 +133,7 @@ h6 {
     /* justify-content: center; */
     text-align: center;
     flex-direction: row;
+    
 }
 
 .song-text {
@@ -149,12 +150,15 @@ h6 {
     margin:5px;
     width:auto;
     color:azure;
+    display: flex;
+    text-align: left;
 }
 
 .artist-name {
     font-size:18px;
     margin:5px;
     color:azure;
+    display: flex;
 }
 
 
