@@ -1,7 +1,7 @@
 import React from 'react'
 import { IoIosSearch } from "react-icons/io";
 
-const SearchBar = ({placeholder,input,setInput}) => {
+const SearchBar = ({placeholder,input,setInput }) => {
 
   const styles = {
     container: {

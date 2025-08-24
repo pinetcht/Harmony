@@ -40,11 +40,6 @@ const UserProfile = ({ userId }) => {
     fetchUserData();
   }, [docID, userID])
 
-  useEffect(() => {
-    console.log('username ', userName)
-    console.log('userID ', userID)
-    console.log('docID ', docID)
-  }, [userName, userID, docID])
 
   const topSongs = [];
   const topArtists = [];

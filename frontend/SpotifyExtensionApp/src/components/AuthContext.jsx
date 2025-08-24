@@ -52,12 +52,6 @@ const AuthProvider = ({ children, location, navigate }) => {
 		}
 	}, [location]);
 
-	useEffect(() => {
-		console.log('auth context username ', userName)
-		console.log('auth context userID ', userID)
-		console.log('auth context docID ', docID)
-	}, [userName, userID, docID])
-
 	const handleLogout = () => {
 		setAccessToken(null);
 		setRefreshToken(null);

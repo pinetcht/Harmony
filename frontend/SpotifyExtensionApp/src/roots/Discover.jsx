@@ -11,8 +11,9 @@ const Discover = () => {
   //fetch all users from Firestore and set to userData
   const { userID, userName, docID } = useContext(AuthContext);
   const [userData, setUserData] = useState(null);
+  const [filteredUsers, setFilteredUsers] = useState(null)
   const [currentUser, setCurrentUser] = useState(null);
-
+  const [searchInput, setSearchInput] = useState("");
 
   const fetchUsers = async () => {
     const response = await axios.get("http://localhost:8000/users");
@@ -30,8 +31,23 @@ const Discover = () => {
 
   useEffect(() => {
     fetchCurrentUser();
-    console.log('other users ', userData)
+    console.log(userData)
   }, [userData]);
+
+
+  // filter when searchInput changes
+  useEffect(() => {
+    if (!allUsers) return;
+    if (searchInput.trim() === "") {
+      setFilteredUsers(userData);
+    } else {
+      const filtered = userData.filter((eachUser) =>
+        eachUser.username.toLowerCase().startsWith(searchInput.toLowerCase())
+      );
+
+      setFilteredUsers(filtered);
+    }
+  }, [searchInput, userData]);
 
 
   // will display default orange background if profilepic is null for user
@@ -47,7 +63,8 @@ const Discover = () => {
         <div className="top-discover-page">
           <div>
             <h1>Find Your Band</h1>
-            <SearchBar placeholder="Search Spotify Users..." />
+            <SearchBar placeholder="Search Spotify Users..." input={searchInput} setInput={setSearchInput} />
+            {/* <SearchBar placeholder="Search Spotify Users..." /> */}
           </div>
           <a href="/UserProfile">
             <div className="userProfile">
@@ -61,14 +78,14 @@ const Discover = () => {
               {
                 currentUser && <h4>{currentUser.username}</h4>
               }
-              
+
             </div>
           </a>
         </div>
         <div>
           <h1 style={{ marginTop: "100px" }}>Based On Your Groove</h1>
           <div className="user-cards-container">
-            {userData && userData.map((user, index) => {
+            {filteredUsers && filteredUsers.map((user, index) => {
               if (user.userid !== userID && user.public)
                 return <ProfileCard key={index} profileData={user} variant="user" />
             })}
