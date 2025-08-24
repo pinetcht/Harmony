@@ -37,7 +37,7 @@ const Discover = () => {
 
   // filter when searchInput changes
   useEffect(() => {
-    if (!allUsers) return;
+    if (!userData) return;
     if (searchInput.trim() === "") {
       setFilteredUsers(userData);
     } else {
