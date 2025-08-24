@@ -21,9 +21,10 @@
     width: 25%;
     font-size: 15px;
     overflow-x: hidden;
-    display: inline-flex;
+    margin-left:1%;
+    display: flex;
     gap: 10px;
-    margin: 12px 0px 0px 7px;
+    align-items: center;
 }
 
 .recent-message {

@@ -33,33 +33,7 @@ const RootApp = () => {
 };
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  	// <React.StrictMode>
       <BrowserRouter> 
         <RootApp />
       </BrowserRouter>
-  	// </React.StrictMode>,
 )
-
-
-// const router = createBrowserRouter([
-// 	{
-// 		path: "/",
-// 		element: <Landing />,
-// 	},
-// 	{
-// 		path: "/Discover",
-// 		element: <Discover />,
-// 	},
-// 	{
-// 		path: "/Inbox",
-// 		element: <Inbox />,
-// 	},
-// 	{
-// 		path: "/Forum",
-// 		element: <Forum/>,
-// 	},
-// 	{
-// 		path: "/Library",
-// 		element: <Library />,
-// 	},
-// ]);

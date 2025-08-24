@@ -38,6 +38,10 @@ const Inbox = () => {
     fetchAllChats();
   }, []);
 
+  useEffect(() => {
+    console.log('selectedChatId ', selectedChatId)
+  }, [selectedChatId]);
+
   //find all chats current user is in
   //save all recievers of the chat
   const receivers = [];
@@ -78,7 +82,7 @@ const Inbox = () => {
             lastMessage = tempMessage.data.message;
             console.log("last message: ", lastMessage);
 
-            //this will get userId of reciever of LAST message, instead get user from chatId :,(
+            // this will get userId of reciever of LAST message, instead get user from chatId :,(
             // for (let userId of tempMessage.data.receiverId) {
             for (let userId of receivers) {
               fetchUserId(userId).then((tempUser) => {

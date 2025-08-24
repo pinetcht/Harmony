@@ -24,13 +24,7 @@ const LinkItems = [
 
 const iconStyle = { color: "black" };
 const iconStyleHover = { color: "white" };
-// const location = useLocation();
 
-
-// React.useEffect(() => {
-//   console.log('location ', location)
-// }, [location]);
-// const isActive = location.pathname === icon.name;
 
 const NavItem = ({ icon, loc, ...rest }) => (
 
@@ -38,16 +32,17 @@ const NavItem = ({ icon, loc, ...rest }) => (
     <Flex
       align="center"
       p="6"
-      borderRadius="lg"
+      borderRadius="1rem"
       role="group"
       className="nav-item"
       cursor="pointer"
       _hover={{
         bg: '#2B6361',
         color: 'white',
-        borderRadius: '25px',
+        borderRadius: '1rem',
       }}
       backgroundColor={loc === icon.name ? '#2B6361' : 'white'}
+
       {...rest}>
       {icon.icon && (
         <Icon
@@ -164,15 +159,9 @@ const NavBar = () => {
   const { handleLogout } = useContext(AuthContext);
   const location = useLocation();
 
-  useEffect(() => {
-    console.log('location ', location)
-  }, [location]);
-
-  // const isActive = location.pathname === icon.name;
-
   return (
     <> 
-      {isMobile ? <BottomBarContent /> : <SideBarContent handleLogout={handleLogout} loc={location.pathname}/>}
+      {isMobile ? <BottomBarContent /> : <SideBarContent handleLogout={handleLogout} loc={location.pathname.slice(1,)}/>}
     </>
   );
 };
