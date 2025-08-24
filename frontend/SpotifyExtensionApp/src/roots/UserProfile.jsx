@@ -40,6 +40,12 @@ const UserProfile = ({ userId }) => {
     fetchUserData();
   }, [docID, userID])
 
+  useEffect(() => {
+    console.log('username ', userName)
+    console.log('userID ', userID)
+    console.log('docID ', docID)
+  }, [userName, userID, docID])
+
   const topSongs = [];
   const topArtists = [];
   const savedAlbums = []
@@ -53,41 +59,41 @@ const UserProfile = ({ userId }) => {
 
   return (
     <>
-      <a href="/" className="back-button-link"> 
-        <button className="profile-button" style={{width:"60px", height:"30px"}}> 
+      <a href="/" className="back-button-link">
+        <button className="profile-button" style={{ width: "60px", height: "30px" }}>
           <img src="/backarrow.png" alt="Back"></img>
-        </button> 
+        </button>
       </a>
-      <div className="main-container"> 
-        <div className="profileContainer"> 
-                {userData && userData.profilepic ? (
-                  <div>
-                    <img className="profilePic" src={userData.profilepic} alt="Profile Pic"></img>
-                  </div>
-                ) : (
-                  <div className="profilePic"></div>
-                )}
-              <div className="profileBio"> 
-                <h3> {userName} </h3>
-                <h6> {userData && userData.followercount} Followers | {userData && userData.followedArtistsCount} Artists Following </h6>
-                {isPrivate ? ( <h6> Private </h6>) : ( <h6> Public </h6>)}
-                <div className="button-container"> 
-                  <button onClick={toggleModal} className="profile-button"> Edit Profile </button>
-                  <a href="/Inbox" style={{textDecoration:"none"}}> 
-                    <button className="profile-button"> Inbox </button>
-                  </a>
-                </div>
-              </div>
+      <div className="main-container">
+        <div className="profileContainer">
+          {userData && userData.profilepic ? (
+            <div>
+              <img className="profilePic" src={userData.profilepic} alt="Profile Pic"></img>
+            </div>
+          ) : (
+            <div className="profilePic"></div>
+          )}
+          <div className="profileBio">
+            <h3> {userName} </h3>
+            <h6> {userData && userData.followercount} Followers | {userData && userData.followedArtistsCount} Artists Following </h6>
+            {isPrivate ? (<h6> Private </h6>) : (<h6> Public </h6>)}
+            <div className="button-container">
+              <button onClick={toggleModal} className="profile-button"> Edit Profile </button>
+              <a href="/Inbox" style={{ textDecoration: "none" }}>
+                <button className="profile-button"> Inbox </button>
+              </a>
+            </div>
+          </div>
         </div>
         {displayTopSongs && (
           <>
-            <h4 className="content-header"> Top Liked Songs </h4> 
-            <div className="content-container"> 
+            <h4 className="content-header"> Top Liked Songs </h4>
+            <div className="content-container">
               {topSongs && topSongs.map((song) => (
-                <div key = {song.songname} className="songs"> 
+                <div key={song.songname} className="songs">
                   <img className="song-album-cover" src={song.albumimage} alt="album cover"></img>
                   <div className="song-text">
-                    <div className="song-name"> 
+                    <div className="song-name">
                       {song.songname}
                     </div>
                     <div className="artist-name">
@@ -100,53 +106,53 @@ const UserProfile = ({ userId }) => {
           </>
         )}
         {displayTopArtists && (
-          <> 
+          <>
             <h4 className="content-header"> Top Artists </h4>
-            <div className="content-container"> 
-            {topArtists && topArtists.map((artist) => (
-              <div key = {artist.artistname} className="artists"> 
-                <img className="artist-image" src={artist.artistimage}></img>
-                <div className="song-name"> 
-                  {artist.artistname}
+            <div className="content-container">
+              {topArtists && topArtists.map((artist) => (
+                <div key={artist.artistname} className="artists">
+                  <img className="artist-image" src={artist.artistimage}></img>
+                  <div className="song-name">
+                    {artist.artistname}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
             </div>
           </>
         )}
         {displaySavedAlbums && (
-          <> 
+          <>
             <h4 className="content-header"> Saved Albums </h4>
-            <div className="content-container"> 
-            {savedAlbums && savedAlbums.map((album) => (
-            <div className="albums" key={album.albumid}> 
-              <img src={album.albumimage} alt="Album cover" className="artist-image"></img>
-              <div className="album-name"> 
-                {album.albumname}
-                <div className="artist-name" style={{fontWeight: "normal"}}> 
-                  {album.artistname[0].name}
+            <div className="content-container">
+              {savedAlbums && savedAlbums.map((album) => (
+                <div className="albums" key={album.albumid}>
+                  <img src={album.albumimage} alt="Album cover" className="artist-image"></img>
+                  <div className="album-name">
+                    {album.albumname}
+                    <div className="artist-name" style={{ fontWeight: "normal" }}>
+                      {album.artistname[0].name}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            ))}
+              ))}
             </div>
           </>
         )}
       </div>
 
-      {isModalOpen && <EditProfileModal 
-                        toggleModal={toggleModal}
-                        isPrivate={isPrivate}
-                        displayTopSongs={displayTopSongs}
-                        displayTopArtists={displayTopArtists}
-                        displaySavedAlbums={displaySavedAlbums}
-                        setIsPrivate={setIsPrivate}
-                        setDisplayTopSongs={setDisplayTopSongs}
-                        setDisplayTopArtists={setDisplayTopArtists}
-                        setDisplaySavedAlbums={setDisplaySavedAlbums} 
-                      />}
+      {isModalOpen && <EditProfileModal
+        toggleModal={toggleModal}
+        isPrivate={isPrivate}
+        displayTopSongs={displayTopSongs}
+        displayTopArtists={displayTopArtists}
+        displaySavedAlbums={displaySavedAlbums}
+        setIsPrivate={setIsPrivate}
+        setDisplayTopSongs={setDisplayTopSongs}
+        setDisplayTopArtists={setDisplayTopArtists}
+        setDisplaySavedAlbums={setDisplaySavedAlbums}
+      />}
     </>
-          
+
   )
 }
 
