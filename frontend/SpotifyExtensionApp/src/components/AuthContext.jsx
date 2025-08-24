@@ -6,8 +6,8 @@ const AuthContext = createContext();
 const AuthProvider = ({ children, location, navigate }) => {
 	const [accessToken, setAccessToken] = useState(null);
 	const [refreshToken, setRefreshToken] = useState(null);
-	const [userID, setUserID] = useState(null);
-	const [userName, setUserName] = useState("gq4qkkn1z41jaao2tgof8jell");
+	const [userID, setUserID] = useState('gq4qkkn1z41jaao2tgof8jell');
+	const [userName, setUserName] = useState(null);
 	const [docID, setDocID] = useState(null);
 
 	useEffect(() => {
