@@ -37,10 +37,8 @@ router.get("/:id", async (req, res) => {
   try {
 
     const docRef = doc(db, "users", req.params.id);
-    console.log('req.params.id ', req.params.id)
-
     const docSnap = await getDoc(docRef);
-    console.log('docsnap in get id ', docSnap)
+    console.log('docsnap in get id ', docSnap.data())
 
     if (docSnap.exists()) {
       res.status(200).json(docSnap.data());
