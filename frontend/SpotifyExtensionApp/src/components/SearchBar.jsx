@@ -32,7 +32,7 @@ const SearchBar = ({placeholder,input,setInput }) => {
   return (
     <div className="container" style={styles.container}>
       <IoIosSearch className="search-icon" style={styles.searchIcon} size={50} />
-      <input type="text" placeholder={placeholder} style={styles.input} onChange={(e) => setInput(e.target.value)}></input>
+      <input type="text" placeholder={placeholder} style={styles.input} value={input} onChange={(e) => setInput(e.target.value)}></input>
     </div>
   )
 }
