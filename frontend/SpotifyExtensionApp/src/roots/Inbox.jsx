@@ -7,6 +7,7 @@ import axios from "axios";
 import { AuthContext } from "../components/AuthContext.jsx";
 import "../styles/inbox.css";
 import ChatBox from "../components/ChatBox.jsx";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 const Inbox = () => {
   const userID = "tgbhyx06nvXxk1UtPmHx";
@@ -17,20 +18,20 @@ const Inbox = () => {
   const userChatIds = [];
 
   const fetchChatId = async (chatId) => {
-    return await axios.get(`http://localhost:8000/chat/${chatId}`);
+    return await axios.get(`${API_BASE}/chat/${chatId}`);
   };
 
   const fetchMessageId = async (messageId) => {
-    return await axios.get(`http://localhost:8000/messages/${messageId}`);
+    return await axios.get(`${API_BASE}/messages/${messageId}`);
   };
 
   const fetchUserId = async (userId) => {
     console.log("fetchUserId userId", userId);
-    return await axios.get(`http://localhost:8000/users/${userId}`);
+    return await axios.get(`${API_BASE}/users/${userId}`);
   };
 
   const fetchAllChats = async () => {
-    const response = await axios.get("http://localhost:8000/chat");
+    const response = await axios.get(`${API_BASE}/chat`);
     setChatData(response.data);
   };
 

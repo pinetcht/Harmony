@@ -5,6 +5,7 @@ import ForumCard from '../components/ForumCard.jsx';
 import { FaArrowLeft } from "react-icons/fa";
 import '../styles/forum.css'
 import Discussion from '../components/Discussion.jsx';
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 const Forum = () => {
   const [forumData, setForumData] = useState(null);
@@ -12,7 +13,7 @@ const Forum = () => {
 
   const fetchForums = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/forum");
+      const response = await axios.get(`${API_BASE}/forum`);
       console.log("forums: ", response.data);
       setForumData(response.data);
     } catch (error) {

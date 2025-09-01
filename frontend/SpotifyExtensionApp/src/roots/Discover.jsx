@@ -8,6 +8,8 @@ import { AuthContext } from '../components/AuthContext.jsx';
 import '../styles/discover.css'
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
+console.log(API_BASE)
+
 const Discover = () => {
   //fetch all users from Firestore and set to userData
   const { userID, userName, docID } = useContext(AuthContext);
@@ -22,6 +24,7 @@ const Discover = () => {
   };
 
   const fetchCurrentUser = async () => {
+    console.log('doc id ', docID)
     const responseUser = await axios.get(`${API_BASE}/users/${docID}`);
     setCurrentUser(responseUser.data);
   }
@@ -32,8 +35,12 @@ const Discover = () => {
 
   useEffect(() => {
     fetchCurrentUser();
-    console.log(userData)
+    console.log("user data ", userData)
   }, [userData]);
+
+    useEffect(() => {
+    console.log("current user data ", currentUser)
+  }, [currentUser]);
 
 
   // filter when searchInput changes
