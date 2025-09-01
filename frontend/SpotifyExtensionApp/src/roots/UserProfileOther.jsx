@@ -20,8 +20,6 @@ const UserProfileOther = () => {
 
   const fetchUserData = async () => {
     const response = await axios.get(`${API_BASE}/users/${otherDocID}`);
-    console.log('other doc id ', otherDocID)
-    console.log(response.data);
     if (otherDocID) {
       setUserData(response.data);
       setAllTimeSongs(response.data.allsongs);
@@ -42,7 +40,6 @@ const UserProfileOther = () => {
 
   useEffect(() => {
     fetchUserData();
-    console.log('saved albums ', savedAlbums)
   }, [otherDocID])
 
   const topSongs = [];

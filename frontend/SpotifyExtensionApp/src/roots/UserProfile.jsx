@@ -26,7 +26,6 @@ const UserProfile = ({ userId }) => {
   };
 
   const fetchUserData = async () => {
-    console.log(docID);
     if (docID) {
       const response = await axios.get(`${API_BASE}/users/${docID}`);
       setUserData(response.data);

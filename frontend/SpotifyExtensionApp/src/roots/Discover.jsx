@@ -25,8 +25,10 @@ const Discover = () => {
 
   const fetchCurrentUser = async () => {
     console.log('doc id ', docID)
-    const responseUser = await axios.get(`${API_BASE}/users/${docID}`);
-    setCurrentUser(responseUser.data);
+    if (docID) {
+      const responseUser = await axios.get(`${API_BASE}/users/${docID}`);
+      setCurrentUser(responseUser.data);
+    }
   }
 
   useEffect(() => {
@@ -36,9 +38,9 @@ const Discover = () => {
   useEffect(() => {
     fetchCurrentUser();
     console.log("user data ", userData)
-  }, [userData]);
+  }, [userData, docID]);
 
-    useEffect(() => {
+  useEffect(() => {
     console.log("current user data ", currentUser)
   }, [currentUser]);
 

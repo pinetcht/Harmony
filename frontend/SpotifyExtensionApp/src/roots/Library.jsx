@@ -73,7 +73,6 @@ const Library = () => {
         }
 
         if (category == "artists") {
-            console.log(artists);
             let temp = [];
             artists.forEach((item) => {if (item.artistname.toLowerCase().includes(input.toLowerCase())) {temp.push(item)}})
             setSearchResults(temp);

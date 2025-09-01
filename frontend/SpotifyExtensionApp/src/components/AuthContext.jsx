@@ -62,19 +62,31 @@ const AuthProvider = ({ children, location, navigate }) => {
 	}
 
 	const getDocId = async () => {
-		if (userID) {
+		if (!userID) return;
+
+		try {
 			const response = await axios.put(`${API_BASE}/users/query/${userID}`, {
-				userId: userID
-			}).then((t) => {
-				setDocID(t.data);
-				localStorage.setItem("docID", t.data);
-			})
+				userId: userID,
+			});
+
+			if (response.data) {
+				console.log('response.data ', response.data)
+				setDocID(response.data);
+			}
+		} catch (error) {
+			console.error("Failed to fetch docID:", error);
 		}
-	}
+	};
 
 	useEffect(() => {
 		getDocId();
-	}, [userID]);
+	}, []);
+
+	useEffect(() => {
+		console.log('doc id in auth context ', docID)
+	}, [docID]);
+
+
 
 	// userID represents spotify username, not doc ID from database
 	// docID represents database doc id
