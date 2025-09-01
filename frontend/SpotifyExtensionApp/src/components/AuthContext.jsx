@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useState, useEffect } from "react";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 const AuthContext = createContext();
 
@@ -62,7 +63,7 @@ const AuthProvider = ({ children, location, navigate }) => {
 
 	const getDocId = async () => {
 		if (userID) {
-			const response = await axios.put(`http://localhost:8000/users/query/${userID}`, {
+			const response = await axios.put(`${API_BASE}/users/query/${userID}`, {
 				userId: userID
 			}).then((t) => {
 				setDocID(t.data);

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 const Reply = ({ reply }) => {
     const [user, setUser] = useState(null);
@@ -8,7 +9,7 @@ const Reply = ({ reply }) => {
     
 
     const fetchUser = async () => {
-        const response = await axios.get(`http://localhost:8000/users/${reply.userId}`);
+        const response = await axios.get(`${API_BASE}/users/${reply.userId}`);
         
         setUser(response.data);
     };

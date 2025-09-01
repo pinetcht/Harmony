@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import ReplyCard from './ReplyCard';
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import ReplyBox from './ReplyBox';
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 const Discussion = ({ forumId }) => {
     const [forumData, setForumData ] = useState(null);
@@ -11,7 +12,7 @@ const Discussion = ({ forumId }) => {
     const [newPost, setNewPost] = useState(false);
 
     const fetchForum = async () => {
-        const response = await axios.get(`http://localhost:8000/forum/${forumId}`);
+        const response = await axios.get(`${API_BASE}/forum/${forumId}`);
         setForumData(response.data);
     };
 
@@ -24,7 +25,7 @@ const Discussion = ({ forumId }) => {
     }, [newPost]);
 
     const likeDiscussion = async () => {
-        const response = await axios.put(`http://localhost:8000/forum/${forumId}`,{
+        const response = await axios.put(`${API_BASE}/forum/${forumId}`,{
             currentLikes: forumData.likes,
         });
         fetchForum();

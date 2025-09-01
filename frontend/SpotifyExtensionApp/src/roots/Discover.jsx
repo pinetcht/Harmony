@@ -6,6 +6,7 @@ import ProfileCard from '../components/ProfileCard.jsx';
 import axios from 'axios';
 import { AuthContext } from '../components/AuthContext.jsx';
 import '../styles/discover.css'
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 const Discover = () => {
   //fetch all users from Firestore and set to userData
@@ -16,12 +17,12 @@ const Discover = () => {
   const [searchInput, setSearchInput] = useState("");
 
   const fetchUsers = async () => {
-    const response = await axios.get("http://localhost:8000/users");
+    const response = await axios.get(`${API_BASE}/users`);
     setUserData(response.data);
   };
 
   const fetchCurrentUser = async () => {
-    const responseUser = await axios.get(`http://localhost:8000/users/${docID}`);
+    const responseUser = await axios.get(`${API_BASE}/users/${docID}`);
     setCurrentUser(responseUser.data);
   }
 

@@ -5,6 +5,7 @@ import axios from "axios";
 import SearchBar from "../components/SearchBar.jsx";
 import "../styles/library.css";
 import { Select } from "@chakra-ui/react";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 const Library = () => {
     const [userData, setUserData] = useState("");
@@ -45,7 +46,7 @@ const Library = () => {
 
     const fetchUser = async () => {
         const response = await axios.get(
-            `http://localhost:8000/users/${docID}`
+            `${API_BASE}/users/${docID}`
         );
         setUserData(response.data);
         setSavedSongs(response.data.allsongs);

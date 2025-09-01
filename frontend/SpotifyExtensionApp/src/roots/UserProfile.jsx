@@ -3,6 +3,7 @@ import { AuthContext } from '../components/AuthContext';
 import '../styles/userProfile.css';
 import EditProfileModal from '../components/EditProfileModal';
 import axios from 'axios';
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 
 const UserProfile = ({ userId }) => {
@@ -27,7 +28,7 @@ const UserProfile = ({ userId }) => {
   const fetchUserData = async () => {
     console.log(docID);
     if (docID) {
-      const response = await axios.get(`http://localhost:8000/users/${docID}`);
+      const response = await axios.get(`${API_BASE}/users/${docID}`);
       setUserData(response.data);
       setAllTimeSongs(response.data.allsongs);
       setTopArtistsYear(response.data.topArtistYear);

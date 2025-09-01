@@ -5,6 +5,7 @@ import { IoMdClose } from "react-icons/io";
 import axios from 'axios';
 import { useContext } from 'react';
 import { AuthContext } from './AuthContext';
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 const EditProfileModal = ({ 
   toggleModal,
@@ -31,7 +32,7 @@ const EditProfileModal = ({
     setIsPrivate(!value);
     try {
         if(docID){
-            await axios.put(`http://localhost:8000/users/public/${docID}`, {
+            await axios.put(`${API_BASE}/users/public/${docID}`, {
                 userId : docID,
                 public: value
             });

@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import Message from "./Message";
 import { AuthContext } from "./AuthContext";
 import '../styles/inbox.css';
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 const ChatBox = ({ chatId }) => {
   //get chat given chatId
@@ -15,7 +16,7 @@ const ChatBox = ({ chatId }) => {
 
   const fetchChat = async () => {
     const chatResponse = await axios.get(
-      `http://localhost:8000/chat/${chatId}`
+      `${API_BASE}/chat/${chatId}`
     );
 
     const chatResponseData = chatResponse.data;
@@ -27,7 +28,7 @@ const ChatBox = ({ chatId }) => {
         profilepic = "";
 
       const messageResponse = await axios.get(
-        `http://localhost:8000/messages/${messageId}`
+        `${API_BASE}/messages/${messageId}`
       );
 
       const messageResponseData = messageResponse.data;
@@ -37,7 +38,7 @@ const ChatBox = ({ chatId }) => {
       timestamp = messageResponseData.date;
 
       const userResponse = await axios.get(
-        `http://localhost:8000/users/${messageResponseData.senderId}`
+        `${API_BASE}/users/${messageResponseData.senderId}`
       );
 
       const userResponseData = userResponse.data;
@@ -73,7 +74,7 @@ const ChatBox = ({ chatId }) => {
     };
 
     await axios.post(
-      "http://localhost:8000/messages/hTec14wd5pSZxNQwanR7",
+      `${API_BASE}/messages/hTec14wd5pSZxNQwanR7`,
       body
     );
 

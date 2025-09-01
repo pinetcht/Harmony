@@ -3,6 +3,7 @@ import { AuthContext } from '../components/AuthContext';
 import '../styles/userProfile.css';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 
 const UserProfileOther = () => {
@@ -18,7 +19,7 @@ const UserProfileOther = () => {
   const [isPrivate, setIsPrivate] = useState(false);
 
   const fetchUserData = async () => {
-    const response = await axios.get(`http://localhost:8000/users/${otherDocID}`);
+    const response = await axios.get(`${API_BASE}/users/${otherDocID}`);
     console.log('other doc id ', otherDocID)
     console.log(response.data);
     if (otherDocID) {
@@ -31,7 +32,7 @@ const UserProfileOther = () => {
   }
 
   const handleFollow = async (currentFollowers) => {
-    const response = await axios.put(`http://localhost:8000/users/follower/${otherDocID}`, {
+    const response = await axios.put(`${API_BASE}/users/follower/${otherDocID}`, {
       userId: otherDocID,
       followers: currentFollowers,
     });
