@@ -2,10 +2,16 @@
 Description: A Spotify extension that allows users to message each other and post to forums. <br>
 Authors: Tiffany Fu, Pine Netcharussaeng, Abhinav Attaluri, Anna Batman , Anh Nguyen
 
+<p align="center">
+    <img width="800" alt="harmony3" src="https://github.com/user-attachments/assets/f978db1f-93fe-4952-8181-eb340138136b" />
+</p>
+
+
 ## Table of Contents
 1. [Installation](#installation)
 2. [Features](#features)
 3. [Tutorial](#tutorial)
+
 
 ### Installation
 To run our app follow these steps
